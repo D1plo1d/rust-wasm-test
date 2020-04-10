@@ -1,8 +1,11 @@
+#[macro_use] extern crate log;
+
 mod utils;
+mod rtc_crypto;
 
 use yew::{html, Callback, MouseEvent, Component, ComponentLink, Html, ShouldRender};
 use wasm_bindgen::prelude::*;
-use log::{info};
+use yew_mdc::components::*;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
@@ -14,7 +17,6 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 extern {
     fn alert(s: &str);
 }
-
 
 struct App {
     clicked: bool,
@@ -56,17 +58,25 @@ impl Component for App {
         };
 
         html! {
-            <button onclick=&self.onclick>{ button_text }</button>
+            <>
+                <Button
+                    text="Log In"
+                    style=button::Style::Raised
+                    onclick=&self.onclick
+                />
+                <button onclick=&self.onclick>{ button_text }</button>
+            </>
         }
     }
 }
 
 #[wasm_bindgen]
 pub fn start_app() {
-    console_log::init()
-        .expect("Unable to start logging");
+    wasm_logger::init(wasm_logger::Config::default());
 
-    info!("Oh hi, how's it going?");
+    rtc_crypto::example();
+
+    info!("Oh hi, how's it going? thing");
     yew::start_app::<App>();
     info!("We done now I guess");
 }

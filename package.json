@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "start": "npx parcel ./src/index.html --no-cache",
-    "build": "wasm-pack build --target=web && wasm2js ./pkg/pack_test_bg.wasm -o ./pkg/pack_test_bg.js && sed -i 's/pack_test_bg.wasm/pack_test_bg.js/' pkg/pack_test.js"
+    "build": "npx parcel build ./src/index.html --no-cache"
   },
   "dependencies": {
     "parcel-bundler": "^1.12.4",
