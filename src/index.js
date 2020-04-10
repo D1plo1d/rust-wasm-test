@@ -1,6 +1,8 @@
-import { greet } from './lib.rs'
+import { start_app }  from './lib.rs'
 
-greet()
+// console.log(test)
+start_app()
+console.log("after app?")
 
 // const main = async () => {
 //   const { greet } = await import('./lib.rs')
